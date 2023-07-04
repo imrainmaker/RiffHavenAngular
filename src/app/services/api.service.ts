@@ -17,13 +17,13 @@ export class APIService {
   AddProduct(product: NewProductDTO)  {
     console.log(product)
     
-    this._http.post<NewProductDTO>(this.urlAPI, product).subscribe()
+    return this._http.post<NewProductDTO>(this.urlAPI, product)
 
    
   }
 
   GetParts(): Observable<GuitarParts>{
-    return this._http.get<GuitarParts>(this.urlAPI)
+    return this._http.get<GuitarParts>(this.urlAPI+"/Detail")
   }
 
 

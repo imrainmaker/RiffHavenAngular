@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NewProductDTO } from 'src/app/models/DTO/new-product-dto';
 import { GuitarParts } from 'src/app/models/guitar-parts';
 import { APIService } from 'src/app/services/api.service';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +26,10 @@ export class AddProductComponent implements OnInit{
   fretboardWoodControl!: FormControl;
   parts!: GuitarParts;
 
-  constructor(private _APIService: APIService, private formBuilder: FormBuilder) {
+  myFiles: File[] = [];
+  url : string = ""
+
+  constructor(private _APIService: APIService, private formBuilder: FormBuilder, private _UpService : UploadService) {
     this.myForm = this.formBuilder.group({
       model: [''],
       description: [''],
@@ -107,11 +111,50 @@ export class AddProductComponent implements OnInit{
     next : (data : GuitarParts) => this.parts = data
    });
   }
+
+  loadFile(e: any) {
+    this.myFiles = e.target.files;
+  }
+
+  
+
+  startUpload() {
+    if (this.myFiles.length > 0) {
+      
+        this._UpService.upload(this.myFiles).subscribe();
+      }
+    }
+  
+
+  resetForm() {
+    this.myForm.reset();
+    this.myForm.get('brand')?.setValue("");
+    this.myForm.get('color')?.setValue("");
+    this.myForm.get('style')?.setValue("");
+    this.myForm.get('pickup')?.setValue("");
+    this.myForm.get('scale')?.setValue("");
+    this.myForm.get('frets')?.setValue("");
+    this.myForm.get('tremolo')?.setValue("");
+    this.myForm.get('bodyWood')?.setValue("");
+    this.myForm.get('neckWood')?.setValue("");
+    this.myForm.get('topWood')?.setValue("");
+    this.myForm.get('fretboardWood')?.setValue("");
+
+  }
   
   submitForm() {
     if (this.myForm.valid) {
       const formValue = this.myForm.value
-      this._APIService.AddProduct(formValue)
+      this._APIService.AddProduct(formValue).subscribe({
+        next : (_) => {
+          this.resetForm();
+          this._APIService.GetParts().subscribe({
+            next : (data : GuitarParts) => this.parts = data
+           });
+
+        }
+      })
+      
     }
   }
 }

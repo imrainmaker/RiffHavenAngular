@@ -23,6 +23,13 @@
               </div>
             </div>
           </div>
+            <div>
+                <h1>Images</h1>
+                <form (ngSubmit)="startUpload()">
+                    <input type="file" multiple (change)="loadFile($event)" />
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
         </div>
   
         <div class="col-sm-6">
@@ -32,7 +39,7 @@
                 <div class="form-group">
                     <label for="brand">Brand</label>
                     <select class="form-select" formControlName="brand">
-                      <option value="">Choose a brand</option>
+                      <option value="" selected >Choose a brand</option>
                       <option *ngFor="let brand of parts.brands" [value]="brand">{{brand}}</option>
                     </select>
                     <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="">
@@ -40,7 +47,7 @@
               <div class="form-group">
                 <label for="style">Style</label>
                 <select class="form-select" formControlName="style">
-                    <option value="">Choose a style</option>
+                    <option value="" selected>Choose a style</option>
                     <option *ngFor="let style of parts.styles" [value]="style">{{style}}</option>
                 </select>
                 <input formControlName="style" type="text" class="form-control" id="style">
@@ -48,7 +55,7 @@
               <div class="form-group">
                 <label for="color">Color</label>
                 <select class="form-select" formControlName="color">
-                    <option value="">Choose a color</option>
+                    <option value="" selected>Choose a color</option>
                     <option *ngFor="let color of parts.colors" [value]="color">{{color}}</option>
                 </select>
                 <input formControlName="color" type="text" class="form-control" id="color">
@@ -56,7 +63,7 @@
               <div class="form-group">
                 <label for="pickup">Pickup</label>
                 <select class="form-select" formControlName="pickup">
-                    <option value="">Choose a pickup</option>
+                    <option value="" selected>Choose a pickup</option>
                     <option *ngFor="let pickup of parts.pickups" [value]="pickup">{{pickup}}</option>
                 </select>
                 <input formControlName="pickup" type="text" class="form-control" id="pickup">
@@ -64,7 +71,7 @@
               <div class="form-group">
                 <label for="scale">Scale</label>
                 <select class="form-select" formControlName="scale">
-                    <option value="">Choose a scale</option>
+                    <option value="" selected>Choose a scale</option>
                     <option *ngFor="let scale of parts.scales" [value]="scale">{{scale}}</option>
                 </select>
                 <input formControlName="scale" type="number" class="form-control" id="scale">
@@ -72,7 +79,7 @@
               <div class="form-group">
                 <label for="frets">Frets</label>
                 <select class="form-select" formControlName="frets">
-                    <option value="">Choose a frets</option>
+                    <option value="" selected>Choose a frets</option>
                     <option *ngFor="let frets of parts.frets" [value]="frets">{{frets}}</option>
                 </select>
                 <input formControlName="frets" type="number" class="form-control" id="frets">
@@ -80,7 +87,7 @@
               <div class="form-group">
                 <label for="tremolo">Tremolo</label>
                 <select class="form-select" formControlName="tremolo">
-                    <option value="">Choose a tremolo</option>
+                    <option value="" selected>Choose a tremolo</option>
                     <option *ngFor="let tremolo of parts.tremolos" [value]="tremolo">{{tremolo}}</option>
                 </select>
                 <input formControlName="tremolo" type="text" class="form-control" id="tremolo">
@@ -88,7 +95,7 @@
               <div class="form-group">
                 <label for="bodyWood">Body</label>
                 <select class="form-select" formControlName="bodyWood">
-                    <option value="">Choose a wood</option>
+                    <option value="" selected>Choose a wood</option>
                     <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
                 </select>
                 <input formControlName="bodyWood" type="text" class="form-control" id="body">
@@ -96,7 +103,7 @@
               <div class="form-group">
                 <label for="neck">Neck</label>
                 <select class="form-select" formControlName="neckWood">
-                    <option value="">Choose a wood</option>
+                    <option value="" selected>Choose a wood</option>
                     <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
                 </select>
                 <input formControlName="neckWood" type="text" class="form-control" id="neck">
@@ -104,7 +111,7 @@
               <div class="form-group">
                 <label for="top">Top</label>
                 <select class="form-select" formControlName="topWood">
-                    <option value="">Choose a wood</option>
+                    <option value="" selected>Choose a wood</option>
                     <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
                 </select>
                 <input formControlName="topWood" type="text" class="form-control" id="top">
@@ -112,7 +119,7 @@
               <div class="form-group">
                 <label for="fretBoard">FretBoard</label>
                 <select class="form-select" formControlName="fretboardWood">
-                    <option value="">Choose a wood</option>
+                    <option value="" selected>Choose a wood</option>
                     <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
                 </select>
                 <input formControlName="fretboardWood" type="text" class="form-control" id="fretBoard">
