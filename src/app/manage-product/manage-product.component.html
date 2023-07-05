@@ -1,0 +1,153 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3" *ngIf="parts">
+            <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+
+                <!-- Price -->
+            <div class="form-group">
+                <label for="price">Price Range</label> : {{ myForm.get('price')?.value }}
+                <input type="range" class="form-range" min={{min}} max="{{max}}" formControlName="price" />
+            </div>
+
+                <!-- brand -->
+            <div class="form-group" >
+                <label for="brand">Brand</label>
+                <select class="form-select" formControlName="brand">
+                    <option [ngValue]="null">Choose a brand</option>
+                    <option *ngFor="let brand of parts.brands" [value]="brand">{{brand}}</option>
+                </select>
+            </div>
+
+                <!-- style -->
+            <div class="form-group">
+                <label for="style">Style</label>
+                <select class="form-select" formControlName="style">
+                    <option [ngValue]="null">Choose a style</option>
+                    <option *ngFor="let style of parts.styles" [value]="style">{{style}}</option>
+                </select>
+            </div>
+
+                <!-- color -->
+            <div class="form-group">
+                <label for="color">color</label>
+                <select class="form-select" formControlName="color" >
+                    <option [ngValue]="null">Choose a color</option>
+                    <option *ngFor="let color of parts.colors" [value]="color">{{color}}</option>
+                </select>
+            </div>
+
+                <!-- pickup -->
+            <div class="form-group">
+                <label for="pickup">pickup</label>
+                <select class="form-select" formControlName="pickup" >
+                    <option [ngValue]="null">Choose a pickup</option>
+                    <option *ngFor="let pickup of parts.pickups" [value]="pickup">{{pickup}}</option>
+                </select>
+            </div>
+
+                <!-- scales -->
+            <div class="form-group">
+                <label for="scale">scale</label>
+                <select class="form-select" formControlName="scale" >
+                    <option [ngValue]="null">Choose a scales</option>
+                    <option *ngFor="let scale of parts.scales" [value]="scale">{{scale}}</option>
+                </select>
+            </div>
+
+                <!-- frets -->
+            <div class="form-group">
+                <label for="frets">frets</label>
+                <select class="form-select" formControlName="frets" >
+                    <option [ngValue]="null">Choose a frets</option>
+                    <option *ngFor="let frets of parts.frets" [value]="frets">{{frets}}</option>
+                </select>
+            </div>
+
+                <!-- tremolo -->
+            <div class="form-group">
+                <label for="tremolo">Tremolo</label>
+                <select class="form-select" formControlName="tremolo">
+                    <option [ngValue]="null">Choose a tremolo</option>
+                    <option *ngFor="let tremolo of parts.tremolos" [value]="tremolo">{{tremolo}}</option>
+                </select>
+            </div>
+
+                <!-- body -->
+            <div class="form-group">
+                <label for="bodyWood">Body</label>
+                <select class="form-select" formControlName="bodyWood">
+                    <option [ngValue]="null">Choose a wood</option>
+                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                </select>
+            </div>
+
+                <!-- neck -->
+            <div class="form-group">
+                <label for="neck">Neck</label>
+                <select class="form-select" formControlName="neckWood">
+                    <option [ngValue]="null">Choose a wood</option>
+                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                </select>
+            </div>
+
+                <!-- top -->
+            <div class="form-group">
+                <label for="top">Top</label>
+                <select class="form-select" formControlName="topWood">
+                    <option [ngValue]="null">Choose a wood</option>
+                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                </select>
+            </div>
+
+                <!-- fretBoard -->
+            <div class="form-group">
+                <label for="fretBoard">FretBoard</label>
+                <select class="form-select" formControlName="fretboardWood">
+                    <option [ngValue]="null">Choose a wood</option>
+                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply</button>
+            </form>
+        </div>
+
+
+        <div class="col-9" *ngIf="productList">
+            <div class="card" style="background-color: #f8f8f8;" *ngFor="let product of productList">
+                <div class="row g-0">
+                <div class="col-3">
+                    <img src="assets/preview.png" alt="no-preview" class="card-img">
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                    <h5 class="card-title">{{product.brand}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{product.model}}</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">STYLE : {{product.style}}</li>
+                        <li class="list-group-item">COLOR : {{product.color}}</li>
+                        <li class="list-group-item">PICKUP : {{product.pickup}}</li>
+                    </ul>
+                    </div>
+                    <div class="card-footer">
+                    <div class="row">
+                        <div class="col-6">
+                        <h5 class="card-text">{{product.price}}€</h5>
+                        </div>
+                        <div class="col-6 text-end">
+                        <p class="card-text">STOCK : {{product.stock}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">
+                            <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 50 50">
+                              <use xlink:href="assets/cart.svg#cart"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

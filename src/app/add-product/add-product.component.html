@@ -23,11 +23,12 @@
               </div>
             </div>
           </div>
-            <div>
-                <h1>Images</h1>
+          <div class="card">
+            <div class="card-header">Images</div>
                 <form (ngSubmit)="startUpload()">
-                    <input type="file" multiple (change)="loadFile($event)" />
-                    <button type="submit">Upload</button>
+                    <br>
+                    <input type="file" multiple (change)="loadFile($event)" /><br><br>
+                    <button type="submit">Upload</button><br>
                 </form>
             </div>
         </div>
