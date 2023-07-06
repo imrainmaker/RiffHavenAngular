@@ -13,19 +13,7 @@ import { UploadService } from 'src/app/services/upload.service';
 export class AddProductComponent implements OnInit{
   myForm!: FormGroup;
   NewProduct!: NewProductDTO;
-  brandControl!: FormControl;
-  colorControl!: FormControl;
-  styleControl!: FormControl;
-  pickupControl!: FormControl;
-  scaleControl!: FormControl;
-  fretsControl!: FormControl;
-  tremoloControl!: FormControl;
-  bodyWoodControl!: FormControl;
-  neckWoodControl!: FormControl;
-  topWoodControl!: FormControl;
-  fretboardWoodControl!: FormControl;
   parts!: GuitarParts;
-
   myFiles: File[] = [];
   url : string = ""
 
@@ -51,60 +39,18 @@ export class AddProductComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.brandControl = this.myForm.get('brand') as FormControl;
-    this.brandControl.valueChanges.subscribe((value) => {
-      this.brandControl.setValue(value, { emitEvent: false }); 
-    });
 
-    this.colorControl = this.myForm.get('color') as FormControl;
-    this.colorControl.valueChanges.subscribe((value) => {
-      this.colorControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.styleControl = this.myForm.get('style') as FormControl;
-    this.styleControl.valueChanges.subscribe((value) => {
-      this.styleControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.pickupControl = this.myForm.get('pickup') as FormControl;
-    this.pickupControl.valueChanges.subscribe((value) => {
-      this.pickupControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.scaleControl = this.myForm.get('scale') as FormControl;
-    this.scaleControl.valueChanges.subscribe((value) => {
-      this.scaleControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.fretsControl = this.myForm.get('frets') as FormControl;
-    this.fretsControl.valueChanges.subscribe((value) => {
-      this.fretsControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.tremoloControl = this.myForm.get('tremolo') as FormControl;
-    this.tremoloControl.valueChanges.subscribe((value) => {
-      this.tremoloControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.bodyWoodControl = this.myForm.get('bodyWood') as FormControl;
-    this.bodyWoodControl.valueChanges.subscribe((value) => {
-      this.bodyWoodControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.neckWoodControl = this.myForm.get('neckWood') as FormControl;
-    this.neckWoodControl.valueChanges.subscribe((value) => {
-      this.neckWoodControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.topWoodControl = this.myForm.get('topWood') as FormControl;
-    this.topWoodControl.valueChanges.subscribe((value) => {
-      this.topWoodControl.setValue(value, { emitEvent: false }); 
-    });
-
-    this.fretboardWoodControl = this.myForm.get('fretboardWood') as FormControl;
-    this.fretboardWoodControl.valueChanges.subscribe((value) => {
-      this.fretboardWoodControl.setValue(value, { emitEvent: false }); 
-    });
+    this.subscribeFormControlChanges('brand');
+    this.subscribeFormControlChanges('color');
+    this.subscribeFormControlChanges('style');
+    this.subscribeFormControlChanges('pickup');
+    this.subscribeFormControlChanges('scale');
+    this.subscribeFormControlChanges('frets');
+    this.subscribeFormControlChanges('tremolo');
+    this.subscribeFormControlChanges('bodyWood');
+    this.subscribeFormControlChanges('neckWood');
+    this.subscribeFormControlChanges('topWood');
+    this.subscribeFormControlChanges('fretboardWood');
 
 
    this._APIService.GetParts().subscribe({
@@ -112,11 +58,17 @@ export class AddProductComponent implements OnInit{
    });
   }
 
+  private subscribeFormControlChanges(controlName: string) {
+    const control = this.myForm.get(controlName) as FormControl;
+    control.valueChanges.subscribe((value) => {
+      control.setValue(value, { emitEvent: false });
+    });
+  }
+
   loadFile(e: any) {
     this.myFiles = e.target.files;
   }
 
-  
 
   startUpload() {
     if (this.myFiles.length > 0) {
