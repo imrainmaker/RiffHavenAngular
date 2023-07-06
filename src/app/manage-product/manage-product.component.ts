@@ -53,6 +53,10 @@ export class ManageProductComponent implements OnInit{
     
   }
   
+  resetFilter() {
+    this.myForm.reset();
+  }
+
   getMinPrice(): number {
     if (this.productList && this.productList.length > 0) {
       return Math.min(...this.productList.map(product => product.price));
@@ -72,11 +76,11 @@ export class ManageProductComponent implements OnInit{
     if (this.myForm.valid) {
       console.log(this.myForm.value);
   
-      // Boucle sur les propriétés du formulaire
+      
       Object.keys(this.myForm.controls).forEach(key => {
         const control = this.myForm.get(key);
         if (control?.value === '') {
-          control.setValue(null); // Remplace la valeur vide par null
+          control.setValue(null); 
         }
       });
   
