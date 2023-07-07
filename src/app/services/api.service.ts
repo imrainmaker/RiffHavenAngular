@@ -15,10 +15,10 @@ export class APIService {
 
   constructor(private _http: HttpClient) {}
 
-  AddProduct(product: NewProductDTO)  {
+  AddProduct(product: NewProductDTO): Observable<number>{
     console.log(product)
     
-    return this._http.post<NewProductDTO>(this.urlAPI, product)
+    return this._http.post<number>(this.urlAPI, product)
 
    
   }

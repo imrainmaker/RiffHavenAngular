@@ -45,11 +45,13 @@
             <div class="card-header">
               Images
             </div>
-            <form (ngSubmit)="startUpload()">
+              <div class="card-body">
+            <!-- <form (ngSubmit)="startUpload()"> -->
                 <br>
                 <input class="form-control form-control-lg" id="formFileLg" type="file" multiple (change)="loadFile($event)" /><br><br>
+              </div>
                 <!-- <button type="submit">Upload</button><br> -->
-            </form>
+            <!-- </form> -->
           </div>
         </div>
       </div>

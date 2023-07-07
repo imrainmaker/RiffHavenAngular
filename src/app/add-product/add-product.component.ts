@@ -69,13 +69,6 @@ export class AddProductComponent implements OnInit{
     this.myFiles = e.target.files;
   }
 
-
-  startUpload() {
-    if (this.myFiles.length > 0) {
-      
-        this._UpService.upload(this.myFiles).subscribe();
-      }
-    }
   
 
   resetForm() {
@@ -91,6 +84,7 @@ export class AddProductComponent implements OnInit{
     this.myForm.get('neckWood')?.setValue("");
     this.myForm.get('topWood')?.setValue("");
     this.myForm.get('fretboardWood')?.setValue("");
+  
 
   }
   
@@ -98,7 +92,11 @@ export class AddProductComponent implements OnInit{
     if (this.myForm.valid) {
       const formValue = this.myForm.value
       this._APIService.AddProduct(formValue).subscribe({
-        next : (_) => {
+        next : (idGuitar : number) => {
+          if (this.myFiles.length > 0) {
+      
+            this._UpService.upload(idGuitar, this.myFiles).subscribe();
+          }
           this.resetForm();
           this._APIService.GetParts().subscribe({
             next : (data : GuitarParts) => this.parts = data

@@ -10,11 +10,11 @@ export class UploadService {
 
   constructor(private _client: HttpClient) { }
 
-  upload(filesToUpload: File[]): Observable<string> {
+  upload(idGuitar : number, filesToUpload: File[]): Observable<string> {
     const formData: FormData = new FormData();
     for (let i = 0; i < filesToUpload.length; i++) {
       formData.append('files', filesToUpload[i], filesToUpload[i].name);
     }
-    return this._client.post(this.url, formData, { responseType: 'text' });
+    return this._client.post(this.url+"/"+idGuitar, formData, { responseType: 'text' });
   }
 }

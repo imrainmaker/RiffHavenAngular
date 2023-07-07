@@ -22,3 +22,37 @@
 .form-select{
     margin-bottom: 10px;
   }
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li a {
+    color: #000000; /* Set the color to black */
+  }
+  
+  .pagination li.disabled a {
+    color: #ffffff; /* Set the color to white */
+  }
+  
+  .pagination li.active a {
+    font-weight: bold;
+    background-color: #000000;
+    color:#ffffff;
+    border-color: #000000;
+  }
+  
