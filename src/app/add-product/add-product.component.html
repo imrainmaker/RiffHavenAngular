@@ -1,135 +1,182 @@
 <form [formGroup]="myForm" (ngSubmit)="submitForm()">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">     
           <div class="card">
-            <div class="card-header">General</div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="model">Model</label>
-                <input formControlName="model" type="text" class="form-control" id="model">
-              </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input formControlName="description" type="text" class="form-control" id="description">
-              </div>
-              <div class="form-group">
-                <label for="stock">Stock</label>
-                <input formControlName="stock" type="number" class="form-control" id="stock">
-              </div>
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input formControlName="price" type="number" class="form-control" id="price">
-              </div>
+            <div class="card-header">
+              General
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header">Images</div>
-                <form (ngSubmit)="startUpload()">
-                    <br>
-                    <input type="file" multiple (change)="loadFile($event)" /><br><br>
-                    <button type="submit">Upload</button><br>
-                </form>
-            </div>
-        </div>
-  
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-header">Guitar</div>
-            <div class="card-body" *ngIf="parts">
-                <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <select class="form-select" formControlName="brand">
-                      <option value="" selected >Choose a brand</option>
-                      <option *ngFor="let brand of parts.brands" [value]="brand">{{brand}}</option>
-                    </select>
-                    <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="model">Model</label>
+                      <input formControlName="model" type="text" class="form-control" id="model">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <input formControlName="description" type="text" class="form-control" id="description">
+                    </div>
                   </div>
-              <div class="form-group">
-                <label for="style">Style</label>
-                <select class="form-select" formControlName="style">
-                    <option value="" selected>Choose a style</option>
-                    <option *ngFor="let style of parts.styles" [value]="style">{{style}}</option>
-                </select>
-                <input formControlName="style" type="text" class="form-control" id="style">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="stock">Stock</label>
+                      <input formControlName="stock" type="number" class="form-control" id="stock">
+                    </div>
+                    <div class="form-group">
+                      <label for="price">Price</label>
+                      <input formControlName="price" type="number" class="form-control" id="price">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="color">Color</label>
-                <select class="form-select" formControlName="color">
-                    <option value="" selected>Choose a color</option>
-                    <option *ngFor="let color of parts.colors" [value]="color">{{color}}</option>
-                </select>
-                <input formControlName="color" type="text" class="form-control" id="color">
-              </div>
-              <div class="form-group">
-                <label for="pickup">Pickup</label>
-                <select class="form-select" formControlName="pickup">
-                    <option value="" selected>Choose a pickup</option>
-                    <option *ngFor="let pickup of parts.pickups" [value]="pickup">{{pickup}}</option>
-                </select>
-                <input formControlName="pickup" type="text" class="form-control" id="pickup">
-              </div>
-              <div class="form-group">
-                <label for="scale">Scale</label>
-                <select class="form-select" formControlName="scale">
-                    <option value="" selected>Choose a scale</option>
-                    <option *ngFor="let scale of parts.scales" [value]="scale">{{scale}}</option>
-                </select>
-                <input formControlName="scale" type="number" class="form-control" id="scale">
-              </div>
-              <div class="form-group">
-                <label for="frets">Frets</label>
-                <select class="form-select" formControlName="frets">
-                    <option value="" selected>Choose a frets</option>
-                    <option *ngFor="let frets of parts.frets" [value]="frets">{{frets}}</option>
-                </select>
-                <input formControlName="frets" type="number" class="form-control" id="frets">
-              </div>
-              <div class="form-group">
-                <label for="tremolo">Tremolo</label>
-                <select class="form-select" formControlName="tremolo">
-                    <option value="" selected>Choose a tremolo</option>
-                    <option *ngFor="let tremolo of parts.tremolos" [value]="tremolo">{{tremolo}}</option>
-                </select>
-                <input formControlName="tremolo" type="text" class="form-control" id="tremolo">
-              </div>
-              <div class="form-group">
-                <label for="bodyWood">Body</label>
-                <select class="form-select" formControlName="bodyWood">
-                    <option value="" selected>Choose a wood</option>
-                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
-                </select>
-                <input formControlName="bodyWood" type="text" class="form-control" id="body">
-              </div>
-              <div class="form-group">
-                <label for="neck">Neck</label>
-                <select class="form-select" formControlName="neckWood">
-                    <option value="" selected>Choose a wood</option>
-                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
-                </select>
-                <input formControlName="neckWood" type="text" class="form-control" id="neck">
-              </div>
-              <div class="form-group">
-                <label for="top">Top</label>
-                <select class="form-select" formControlName="topWood">
-                    <option value="" selected>Choose a wood</option>
-                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
-                </select>
-                <input formControlName="topWood" type="text" class="form-control" id="top">
-              </div>
-              <div class="form-group">
-                <label for="fretBoard">FretBoard</label>
-                <select class="form-select" formControlName="fretboardWood">
-                    <option value="" selected>Choose a wood</option>
-                    <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
-                </select>
-                <input formControlName="fretboardWood" type="text" class="form-control" id="fretBoard">
-              </div>
-            </div>
           </div>
         </div>
       </div>
+
+
+
+
+      
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="card">
+            <div class="card-header">
+              Images
+            </div>
+            <form (ngSubmit)="startUpload()">
+                <br>
+                <input class="form-control form-control-lg" id="formFileLg" type="file" multiple (change)="loadFile($event)" /><br><br>
+                <!-- <button type="submit">Upload</button><br> -->
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-sm-12">  
+
+          <div class="card">
+            <div class="card-header">
+              Guitar
+            </div>
+            <div class="card-body" *ngIf="parts">
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="brand">Brand</label>
+                      <select class="form-select" formControlName="brand">
+                        <option value="" selected >Choose a brand</option>
+                        <option *ngFor="let brand of parts.brands" [value]="brand">{{brand}}</option>
+                      </select>
+                      <input formControlName="brand" type="text" class="form-control" id="brand" placeholder="">
+                    </div>
+                  <div class="form-group">
+                    <label for="style">Style</label>
+                    <select class="form-select" formControlName="style">
+                        <option value="" selected>Choose a style</option>
+                        <option *ngFor="let style of parts.styles" [value]="style">{{style}}</option>
+                    </select>
+                    <input formControlName="style" type="text" class="form-control" id="style">
+                  </div>
+                  <div class="form-group">
+                    <label for="color">Color</label>
+                    <select class="form-select" formControlName="color">
+                        <option value="" selected>Choose a color</option>
+                        <option *ngFor="let color of parts.colors" [value]="color">{{color}}</option>
+                    </select>
+                    <input formControlName="color" type="text" class="form-control" id="color">
+                  </div>
+                  <div class="form-group">
+                    <label for="pickup">Pickup</label>
+                    <select class="form-select" formControlName="pickup">
+                        <option value="" selected>Choose a pickup</option>
+                        <option *ngFor="let pickup of parts.pickups" [value]="pickup">{{pickup}}</option>
+                    </select>
+                    <input formControlName="pickup" type="text" class="form-control" id="pickup">
+                  </div>
+                  <div class="form-group">
+                    <label for="scale">Scale</label>
+                    <select class="form-select" formControlName="scale">
+                        <option value="" selected>Choose a scale</option>
+                        <option *ngFor="let scale of parts.scales" [value]="scale">{{scale}}</option>
+                    </select>
+                    <input formControlName="scale" type="number" class="form-control" id="scale">
+                  </div>
+                  <div class="form-group">
+                    <label for="frets">Frets</label>
+                    <select class="form-select" formControlName="frets">
+                        <option value="" selected>Choose a frets</option>
+                        <option *ngFor="let frets of parts.frets" [value]="frets">{{frets}}</option>
+                    </select>
+                    <input formControlName="frets" type="number" class="form-control" id="frets">
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="tremolo">Tremolo</label>
+                    <select class="form-select" formControlName="tremolo">
+                        <option value="" selected>Choose a tremolo</option>
+                        <option *ngFor="let tremolo of parts.tremolos" [value]="tremolo">{{tremolo}}</option>
+                    </select>
+                    <input formControlName="tremolo" type="text" class="form-control" id="tremolo">
+                  </div>
+                  <div class="form-group">
+                    <label for="bodyWood">Body</label>
+                    <select class="form-select" formControlName="bodyWood">
+                        <option value="" selected>Choose a wood</option>
+                        <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                    </select>
+                    <input formControlName="bodyWood" type="text" class="form-control" id="body">
+                  </div>
+                  <div class="form-group">
+                    <label for="neck">Neck</label>
+                    <select class="form-select" formControlName="neckWood">
+                        <option value="" selected>Choose a wood</option>
+                        <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                    </select>
+                    <input formControlName="neckWood" type="text" class="form-control" id="neck">
+                  </div>
+                  <div class="form-group">
+                    <label for="top">Top</label>
+                    <select class="form-select" formControlName="topWood">
+                        <option value="" selected>Choose a wood</option>
+                        <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                    </select>
+                    <input formControlName="topWood" type="text" class="form-control" id="top">
+                  </div>
+                  <div class="form-group">
+                    <label for="fretBoard">FretBoard</label>
+                    <select class="form-select" formControlName="fretboardWood">
+                        <option value="" selected>Choose a wood</option>
+                        <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
+                    </select>
+                    <input formControlName="fretboardWood" type="text" class="form-control" id="fretBoard">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
     </div>
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      
+</form>

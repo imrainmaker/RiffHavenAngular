@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3" *ngIf="parts">
-            <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+            <form class="filter-form" [formGroup]="myForm" (ngSubmit)="submitForm()">
 
                 <!-- Price -->
             <div class="form-group">
@@ -107,7 +107,12 @@
                     <option *ngFor="let wood of parts.woods" [value]="wood">{{wood}}</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Apply</button><button class="btn btn-secondary" (click)="resetFilter()">reset</button>
+            <span class="btn-filter">
+            <button type="submit" class="btn btn-primary">Apply</button>
+            </span>
+            <span class="btn-filter">
+            <button class="btn btn-secondary" (click)="resetFilter()">reset</button>
+            </span>
             </form>
         </div>
 
