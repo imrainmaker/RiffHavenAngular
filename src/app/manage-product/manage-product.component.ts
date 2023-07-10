@@ -97,7 +97,7 @@ export class ManageProductComponent implements OnInit {
   
     return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-  
+
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -132,6 +132,18 @@ export class ManageProductComponent implements OnInit {
       return Math.max(...this.productList.map((product) => product.price));
     }
     return 0;
+  }
+
+  DeleteProduct(id: number){
+    console.log(id);
+    this._APIService.DeleteProduct(id).subscribe()
+    const formValue = this.myForm.value;
+    this._APIService.GetProductsFiltred(formValue).subscribe({
+      next: (data: Products[]) => {
+        this.productList = data
+        this.productList.sort((a, b) => (a.id_Guitar > b.id_Guitar ? -1 : 1));
+      }
+    });
   }
 
   submitForm() {

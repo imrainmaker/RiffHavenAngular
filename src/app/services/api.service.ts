@@ -35,5 +35,7 @@ export class APIService {
     return this._http.post<Products[]>(this.urlAPI+"/Filter", filter)
   }
 
-
+  DeleteProduct(id : number): Observable<boolean>{
+    return this._http.delete<boolean>(this.urlAPI+"/"+id)
+  }
 }
