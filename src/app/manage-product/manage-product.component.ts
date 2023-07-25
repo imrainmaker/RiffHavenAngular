@@ -44,23 +44,6 @@ export class ManageProductComponent implements OnInit {
         this.max = this.getMaxPrice();
         
         this.productList.sort((a, b) => (a.id_Guitar > b.id_Guitar ? -1 : 1));
-        // Initialize image loaded status for each product
-        this.imageLoaded = new Array(this.productList.length).fill(false);
-
-        // Preload images
-        this.productList.forEach((product: Products, index: number) => {
-          const image = new Image();
-          const imagePath = `assets/Guitars/Guitar${product.id_Guitar}/preview.jpg`;
-          const defaultImagePath = 'assets/preview.png';
-
-          image.src = imagePath;
-          image.onerror = () => {
-            this.imageLoaded[index] = false; // Mark image as not loaded
-          };
-          image.onload = () => {
-            this.imageLoaded[index] = true; // Mark image as loaded
-          };
-        });
       }
     });
 
@@ -68,6 +51,7 @@ export class ManageProductComponent implements OnInit {
     this._APIService.GetParts().subscribe({
       next: (data: GuitarParts) => (this.parts = data)
     });
+    
   }
   
   getProductListForCurrentPage(): Products[] {
@@ -134,16 +118,19 @@ export class ManageProductComponent implements OnInit {
     return 0;
   }
 
-  DeleteProduct(id: number){
+  DeleteProduct(id: number) {
     console.log(id);
-    this._APIService.DeleteProduct(id).subscribe()
-    const formValue = this.myForm.value;
-    this._APIService.GetProductsFiltred(formValue).subscribe({
-      next: (data: Products[]) => {
-        this.productList = data
-        this.productList.sort((a, b) => (a.id_Guitar > b.id_Guitar ? -1 : 1));
+    this._APIService.DeleteProduct(id).subscribe(
+      () => {
+        const formValue = this.myForm.value;
+        this._APIService.GetProductsFiltred(formValue).subscribe({
+          next: (data: Products[]) => {
+            this.productList = data;
+            this.productList.sort((a, b) => (a.id_Guitar > b.id_Guitar ? -1 : 1));
+          }
+        });
       }
-    });
+    );
   }
 
   submitForm() {
