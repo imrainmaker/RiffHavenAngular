@@ -16,4 +16,5 @@ export interface Products {
     neckWood: string;
     topWood: string;
     fretboardWood: string;
+    imageUrl: string;
 }

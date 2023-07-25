@@ -121,8 +121,8 @@
             <div class="card" style="background-color: #f8f8f8;" *ngFor="let product of getProductListForCurrentPage(); let i = index">
                 <div class="row g-0">
                 <div class="col-3" style="background-color: #ffffff" align=center>
-                    <img *ngIf="imageLoaded[i]" [src]="'assets/Guitars/Guitar' + product.id_Guitar + '/preview.jpg'" alt="no-preview" class="card-img">
-                    <img *ngIf="!imageLoaded[i]" src="assets/preview.png" alt="no-preview" class="card-img">
+                    <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="preview" class="card-img">
+                    <img *ngIf="!product.imageUrl" src="assets/preview.png" alt="no-preview" class="card-img">
     
                 </div>
                 <div class="col-9">
