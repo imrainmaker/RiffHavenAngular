@@ -5,6 +5,8 @@ import { Products } from '../models/products';
 import { APIService } from '../services/api.service';
 import { Router } from '@angular/router';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
@@ -19,6 +21,7 @@ export class ManageProductComponent implements OnInit {
   max!: number;
   imageLoaded: boolean[] = []; 
   currentPage: number = 1;
+
 
   constructor(private _APIService: APIService, private formBuilder: FormBuilder, private _route: Router) {
     this.myForm = this.formBuilder.group({
@@ -136,6 +139,15 @@ export class ManageProductComponent implements OnInit {
 
   GoToProduct(id: number){
     this._route.navigateByUrl(`Edit-Product/${id}`)
+  }
+
+  dismissModal(index: number) {
+    const modalId = '#confirmModal' + index;
+    const modalElement = document.querySelector(modalId);
+    if (modalElement) {
+      const bootstrapModal = new bootstrap.Modal(modalElement);
+      bootstrapModal.hide();
+    }
   }
 
   submitForm() {
