@@ -6,9 +6,9 @@
             <div class="col-sm-6">
                 <div class="card">
 
-                    <img *ngIf="product?.imageUrl" [src]="product.imageUrl" alt="preview" class="card-img">
-                    <img *ngIf="!product?.imageUrl" src="assets/preview.png" alt="no-preview" class="card-img">
-            
+                  <img *ngIf="imageUrl" [src]="imageUrl" alt="preview" class="card-img">
+                  <img *ngIf="!imageUrl" src="assets/preview.png" alt="no-preview" class="card-img">
+                  
                     <br>
 
                     <p>Update Image</p>

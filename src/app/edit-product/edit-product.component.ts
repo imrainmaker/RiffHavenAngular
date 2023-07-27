@@ -19,6 +19,7 @@ export class EditProductComponent implements OnInit {
   myFiles: File[] = [];
   parts!: GuitarParts;
   productId! : number;
+  imageUrl!: string;
 
   constructor(private _APIService: APIService, private formBuilder: FormBuilder, private _UpService : UploadService, private _route: ActivatedRoute) {
     this.myForm = this.formBuilder.group({
@@ -67,6 +68,7 @@ export class EditProductComponent implements OnInit {
         topWood: this.product.topWood,
         fretboardWood: this.product.fretboardWood,
       });
+      this.imageUrl = this.product?.imageUrl;
     });
 
     this.subscribeFormControlChanges('brand');
@@ -80,6 +82,7 @@ export class EditProductComponent implements OnInit {
     this.subscribeFormControlChanges('neckWood');
     this.subscribeFormControlChanges('topWood');
     this.subscribeFormControlChanges('fretboardWood');
+    
   
     this._APIService.GetParts().subscribe((data: GuitarParts) => (this.parts = data));
   }
@@ -96,18 +99,16 @@ export class EditProductComponent implements OnInit {
     }
     submitGeneralForm() {
       if (this.myForm.valid) {
-        const formValue = this.myForm.value
-        this._APIService.UpdateProduct(this.productId, formValue ).subscribe((data: Products) => {
-        this.product = data;
-        if (this.myFiles.length > 0) {
-      
-          this._UpService.upload(this.product.id_Guitar, this.myFiles).subscribe();
-        }
-        
-
-        });
+        const formValue = this.myForm.value;
+        this._APIService.UpdateProduct(this.productId, formValue).subscribe({
+          next:(data: Products) => {this.product = data;
+    
+          if (this.myFiles.length > 0) {
+            this._UpService.upload(this.product.id_Guitar, this.myFiles).subscribe({
+              next: (uploadedImage: string) => {this.imageUrl = uploadedImage;},});
+          }
+        }});
       }
-
     }
     submitGuitarForm() {
       if (this.myGuitarForm.valid) {

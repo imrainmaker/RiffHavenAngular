@@ -1,3 +1,4 @@
+
 a{ 
   cursor: pointer; 
 }
@@ -9,8 +10,13 @@ a{
     margin: 0px 15px 0px 15px;
 }
 .card-img{
-    height: 200px;
+    height: 280px;
     width: auto;
+    
+}
+
+.image-column {
+  height: 100%;
 }
 
 .filter-form{
