@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { GuitarParts } from '../models/guitar-parts';
 import { Products } from '../models/products';
 import { APIService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-product',
@@ -19,7 +20,7 @@ export class ManageProductComponent implements OnInit {
   imageLoaded: boolean[] = []; 
   currentPage: number = 1;
 
-  constructor(private _APIService: APIService, private formBuilder: FormBuilder) {
+  constructor(private _APIService: APIService, private formBuilder: FormBuilder, private _route: Router) {
     this.myForm = this.formBuilder.group({
       price: [null],
       brand: [null],
@@ -131,6 +132,10 @@ export class ManageProductComponent implements OnInit {
         });
       }
     );
+  }
+
+  GoToProduct(id: number){
+    this._route.navigateByUrl(`Edit-Product/${id}`)
   }
 
   submitForm() {

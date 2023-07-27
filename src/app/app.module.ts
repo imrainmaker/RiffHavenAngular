@@ -7,14 +7,16 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './Components/Shared/navbar/navbar.component';
-import { ManageProductComponent } from './manage-product/manage-product.component'
+import { ManageProductComponent } from './manage-product/manage-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AddProductComponent,
     NavbarComponent,
-    ManageProductComponent
+    ManageProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

@@ -119,6 +119,7 @@
 
         <div class="col-9" *ngIf="productList">
             <div class="card" style="background-color: #f8f8f8;" *ngFor="let product of getProductListForCurrentPage(); let i = index">
+                <a (click)="GoToProduct(product.id_Products)">
                 <div class="row g-0">
                 <div class="col-3" style="background-color: #ffffff" align=center>
                     <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="preview" class="card-img">
@@ -155,6 +156,7 @@
                     </div>
                 </div>
                 </div>
+                </a>
             </div>
             <div class="pagination-container">
                 <nav aria-label="...">
