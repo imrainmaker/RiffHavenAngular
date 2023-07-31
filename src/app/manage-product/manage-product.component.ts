@@ -141,14 +141,7 @@ export class ManageProductComponent implements OnInit {
     this._route.navigateByUrl(`Edit-Product/${id}`)
   }
 
-  // dismissModal(index: number) {
-  //   const modalId = '#confirmModal' + index;
-  //   const modalElement = document.querySelector(modalId);
-  //   if (modalElement) {
-  //     const bootstrapModal = new bootstrap.Modal(modalElement);
-  //     bootstrapModal.hide();
-  //   }
-  // }
+
 
   submitForm() {
     if (this.myForm.valid) {
